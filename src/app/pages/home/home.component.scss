@@ -1,0 +1,21 @@
+.logo{
+    justify-content: center;
+    align-items: center;
+    flex-flow:column;
+    mat-form-field{
+        width: 50%;
+        border-radius: 2rem; 
+        // border: 1px solid #eee;
+        //    width: 50%;
+        // border: 1px solid;
+        // border-radius: 2rem;
+        // height: 50px;
+        // outline: none;
+        // line-height: 50px;
+        // font-size: 40px;
+    }
+    input{
+        line-height: 22px;
+    }
+}
+
