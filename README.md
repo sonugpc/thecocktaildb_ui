@@ -1,27 +1,34 @@
-# Cocktaildb
+# CocktailDB UI Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.2.
+![thecocktaildb](https://www.thecocktaildb.com/images/logo.png "The Cocktail DB UI")
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+# How To Start on Local Server
 
-## Code scaffolding
+1. Clone the Files
+2. run `npm i` and install dependencies
+3. run command `ng serve` to start the local server
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+# Features
+1. Search By Name/Category/Ingredients
+2. Filter results based on category or ingredients
+3. Detail view of a drink by clicking on it's tile
+4. Move to search results of a drink's category or ingredients 
 
-## Build
+# Notes
+1. Filter option is available for only name search results due to api response for the category & ingredients lookup
+2. The web app is not fully optimized for mobile version. 
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+# Purpose 
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Implementation of the Thecocktaildb free apis to make a preview of it. 
 
-## Running end-to-end tests
+# Used Libraries 
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+1. ngx-lottie
+2. Material Angular UI
+3. Bootstrap
+4. Some Images from ManyPixel/undraw
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.

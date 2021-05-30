@@ -1,1 +1,39 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+@import url(theme.scss);
+$primary : "#8d1151";
+// --color-primary:"#8d1151";
+
+body{
+    background-color: #f8f8f8;
+    overflow-x: hidden;
+    width: 100vw;
+}
+*{
+    //overflow-x: hidden;
+}
+
+.mat-select-trigger {
+    line-height: 1.3;
+}
+
+.ingGrad{
+    background-color: #0093E9;
+background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+
+}
+.catGrad{
+    background-color: #FAD961;
+    background-image: linear-gradient(90deg, #FAD961 0%, #F76B1C 100%);
+    
+
+}
+.nameGrad{
+    background-color: #FF3CAC;
+    background-image: linear-gradient(225deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%);
+}

@@ -1,0 +1,144 @@
+<div [ngClass]="{'nameGrad': pageType=='name','catGrad':pageType=='category','ingGrad':pageType=='ing'}" class="hero">
+
+    <app-header>
+
+    </app-header>
+    <div>
+
+        <div class="title position-relative flex-column">
+            <p class="text-white">You have searched for..</p>
+            <div class="d-flex">
+                <h1>{{searchQuery}}</h1>
+                 <button *ngIf="pageType=='name'" (click)="showFilter=!showFilter" mat-icon-button color="secondary">
+                    <mat-icon>filter_alt</mat-icon>
+                </button>
+            </div>
+            <p></p>
+            <div style="right: 0;" class=" position-absolute d-sm-none ">
+                <!-- <img [src]="sideImage" />
+             -->
+            </div>
+            <div *ngIf="showFilter" class="mt-2 shadow align-items-center  filterBox d-flex flex-wrap">
+                <div style="    line-height: 55px;" class="col-md-2 col-lg-2  col-sm-12 col-xs-12">
+                    Filter
+
+                </div>
+
+                <div *ngIf="pageType=='name'||pageType=='ing'" class="col-md-5 col-lg-5 col-sm-12 col-xs-12">
+                    <mat-form-field appearance="outline" class="mr-3 w-100">
+                        <mat-label>Category</mat-label>
+                        <input [ngModel]="filterQuery" (ngModelChange)="onUpdateCategory($event)" matInput
+                            placeholder="Ex. Classic">
+                    </mat-form-field>
+                </div>
+
+                <div *ngIf="pageType=='name'||pageType=='category'" class="col-md-5 col-lg-5  col-sm-12 col-xs-12">
+                    <mat-form-field appearance="outline" class="ml-3 w-100">
+                        <mat-label>Ingredient</mat-label>
+                        <input [ngModel]="filterQuery" (ngModelChange)="onUpdateIngredients($event)" matInput class=""
+                            placeholder="Ex. Lemon">
+                        <mat-icon matSuffix>reset</mat-icon>
+
+                    </mat-form-field>
+                </div>
+                <div *ngIf="pageType=='ing'||pageType=='category'" class="col-md-5 col-lg-5 col-sm-6 col-xs-6 ">
+                    <mat-form-field appearance="outline" class="ml-3 example-full-width">
+                        <mat-label>Names</mat-label>
+                        <input matInput [ngModel]="filterQuery" (ngModelChange)="onUpdateNames($event)" class=""
+                            placeholder="Ex. Mojito">
+                    </mat-form-field>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="p-5 mt-4">
+    <div *ngIf="isLoading" class="d-flex flex-wrap align-items-center flex-column justify-content-center">
+        <ng-lottie width="300px" height="300px" [options]="options"></ng-lottie>
+        <span class="mt--4">Please Wait...</span>
+    </div>
+    <div *ngIf="!isLoading&&resultData.length==0"
+        class="d-flex flex-wrap  align-items-center overflow-hidden flex-column justify-content-center">
+        <img style="    height: 30%;
+        width: 50%;" src="assets/beach.svg" />
+        <span class="mt--4">No Results Found</span>
+        <button (click)="com.route('/home')" mat-stroked-button color="primary"> Search Again</button>
+    </div>
+    <div *ngIf="!isLoading&&resultData.length!=0" class="d-flex flex-wrap justify-content-center">
+        <div class="col-md-3 col-lg-3 col-sm-6 col-xs-6 col-md-3 mt-4" *ngFor="let i of resultData">
+
+            <div (click)="openModal(temp,i)" class="tail-col shadow overflow-hidden">
+                <div class="img-part"><img [src]="i.thumb" /></div>
+                <div class="name-part text-center">
+                    {{i.drinkName}}
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<ng-template #temp>
+    <div *ngIf="modalLoading">
+        <ng-lottie width="300px" height="300px" [options]="options"></ng-lottie>
+
+    </div>
+    <div *ngIf="!modalLoading" class="backdrop">
+        <h1 mat-dialog-title>{{activatedTail.drinkName}}</h1>
+
+        <div mat-dialog-content>
+            <div class="row">
+                <div class="left-modal col-md-4 col-lg-4 col-xs-12 col-sm-12 overflow-hidden"><img class="" [src]="activatedTail.thumb" /></div>
+                <div class="flex-column col-md-8 col-lg-8 col-xs-12 col-sm-12 right-modal">
+                    <div class="col-12"><h1>Facts</h1></div>
+                    <section>
+                        <div class="label">Category</div>
+                        <div class="deck-row">
+                          <button mat-dialog-close mat-button (click)="com.routeToPath('/search/category',activatedTail.category)" color="primary">{{activatedTail.category}}</button>
+                        
+                        </div>
+                      </section>
+                      <mat-divider></mat-divider>
+                      <section>
+                        <div class="label">Ingredients</div>
+                        <div class="deck-row">
+                          <button mat-dialog-close (click)="com.routeToPath('/search/ingredients',k.ingredient)"  *ngFor="let k of activatedTail.ingredients"  mat-button color="primary">{{k.ingredient}}</button>
+                        
+                        </div>
+                      </section>
+                      <mat-divider></mat-divider>
+                      <section>
+                        <div class="label">Measure</div>
+                        <div class="deck-row">
+                          <button *ngFor="let i of activatedTail.ingredients"  mat-button color="primary">{{i.measure}}</button>
+                        
+                        </div>
+                      </section>
+                      <mat-divider></mat-divider>
+                      <section>
+                        <div class="label">Instructions</div>
+                        <div class="deck-row">
+                          <div class="label" >{{activatedTail.instructions}}</div>
+                        
+                        </div>
+                      </section>
+                      <mat-divider></mat-divider>
+                      <section>
+                        <div class="label">Glass</div>
+                        <div class="deck-row">
+                          <div class="label" >{{activatedTail.glass}}</div>
+                        
+                        </div>
+                      </section>
+                      <mat-divider></mat-divider>
+                </div>
+            </div>
+
+        </div>
+        <div mat-dialog-actions align="end">
+            <button mat-button  mat-dialog-close cdkFocusInitial>Ok</button>
+          </div>
+    </div>
+</ng-template>

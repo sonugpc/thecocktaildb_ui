@@ -1,0 +1,28 @@
+<app-header></app-header>
+<div class="container-fluid">
+  <form #form="ngForm" (submit)="onSearch(form)" class="d-flex align-center logo ">
+    <img src="assets/CD.svg" />
+    <div style="width: 60%;" class="d-flex justify-content-center align-items-center">
+      <mat-form-field style="width: 100%;" appearance="outline" floatLabel="always">
+        <input ngModel name="search" matInput type="text" placeholder="Type Anything..">
+        <span matPrefix>
+          <mat-icon>search</mat-icon>
+        </span>
+      </mat-form-field>
+      <mat-form-field class="ml-2 " style="width: 40%;" appearance="outline">
+        <mat-select  [(value)]="selected" placeholder="Mode"  [(ngModel)]="selected" name="category">
+          <mat-option value="name" selected>By Name</mat-option>
+          <mat-option value="category">By Category</mat-option>
+          <mat-option value="ingredients">By Ingredients</mat-option>
+
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div>
+      <button  [disabled]="form.value.search==''" style="    width: 150px;" mat-stroked-button class="btn-s mr-2 "
+        color="secondary">Search</button>
+      <!-- <button style="    width: 150px;" mat-stroked-button class="ml-2 ">Explore</button> -->
+
+    </div>
+  </form>
+</div>
