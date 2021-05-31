@@ -20,7 +20,7 @@ export class SearchComponent implements OnInit {
   filterQuery:any;
   pageType:any="name"
   options: AnimationOptions = {
-    path: '/assets/load.json',
+    path: 'assets/load.json',
   };
   backupData: any[]=[];
   modalLoading: boolean=false;;
